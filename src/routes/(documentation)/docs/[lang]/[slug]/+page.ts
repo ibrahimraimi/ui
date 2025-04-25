@@ -6,7 +6,7 @@ export const load = (async ({ params }) => {
   const { lang, slug } = params;
   
   try {
-    // Dynamically import the markdown file
+
     const post = await import(`../../content/${lang}/${slug}.svex`);
     
     return {

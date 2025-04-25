@@ -9,8 +9,67 @@
     
     if (tocElement && container) {
       container.appendChild(tocElement);
+      
+      // After TOC is added to the container, implement scroll highlighting
+      setTimeout(setupScrollHighlighting, 200);
     }
   });
+  
+  function setupScrollHighlighting() {
+    const tocLinks = document.querySelectorAll('.toc-container a');
+    if (!tocLinks.length) return;
+    
+    // Get all section headings from the document
+    const sections = [];
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const id = href.substring(1); // Remove the # at the beginning
+        const section = document.getElementById(id);
+        if (section) {
+          sections.push({
+            id,
+            section,
+            link
+          });
+        }
+      }
+    });
+    
+    // Function to update active section
+    function updateActiveSection() {
+      let activeSection = null;
+      
+      // Find which section is currently in view
+      for (const {id, section, link} of sections) {
+        const rect = section.getBoundingClientRect();
+        // Check if section is in view (top of section is above the middle of the viewport)
+        if (rect.top <= 150) {
+          activeSection = {id, section, link};
+        } else {
+          // If we've passed the section that's in view, break
+          break;
+        }
+      }
+      
+      // Remove active class from all links
+      tocLinks.forEach(link => link.classList.remove('active'));
+      
+      // Add active class to the active section's link
+      if (activeSection) {
+        activeSection.link.classList.add('active');
+      } else if (sections.length > 0) {
+        // If no section is active, highlight the first
+        sections[0].link.classList.add('active');
+      }
+    }
+    
+    // Update active section on scroll
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    
+    // Initial update
+    updateActiveSection();
+  }
 </script>
 
 <div class="toc-container">
@@ -38,17 +97,26 @@
   .toc-container :global(.toc a) {
     color: #718096;
     text-decoration: none;
-    transition: color 0.2s;
-    font-size: 0.9rem;
+    transition: color 0.2s, background-color 0.2s;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    display: block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 300;
   }
   
   .toc-container :global(.toc a:hover) {
     color: #2d3748;
-    text-decoration: underline;
   }
   
-  .toc-container :global(.toc ul ul) {
-    padding-left: 1rem;
+  .toc-container :global(.toc a.active) {
+   font-weight: 600;
+   color: #2d3748;
+  }
+  
+  .toc-container :global(ol) {
+    padding-left: 0.5rem;
     margin-top: 0.5rem;
   }
 </style> 

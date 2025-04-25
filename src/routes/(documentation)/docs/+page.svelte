@@ -1,5 +1,5 @@
 <script>
-	import { supportedLocales } from './../../lib/utils.ts';
+	import { supportedLocales } from '$lib/utils.ts';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
   import { getBrowserLocales } from '$lib/utils';

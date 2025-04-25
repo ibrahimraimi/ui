@@ -27,7 +27,7 @@ Easily customize components to match your brand and design requirements.
 
 ## Getting Started
 
-## installation
+### installation
 
 ``` bash
     npm install hash/ui

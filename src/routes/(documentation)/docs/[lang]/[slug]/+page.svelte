@@ -1,5 +1,24 @@
 <script>
+  import { onMount } from 'svelte';
   export let data;
+  
+  // Ensure all headings have IDs for the TOC
+  onMount(() => {
+    // Select all headings without IDs
+    const headings = document.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4');
+    
+    headings.forEach((heading, index) => {
+      if (!heading.id) {
+        // Generate an ID based on the heading text
+        const headingText = heading.textContent.trim().toLowerCase()
+          .replace(/[^\w\s-]/g, '') // Remove special characters
+          .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
+          .replace(/^-+|-+$/g, ''); // Remove leading and trailing hyphens
+          
+        heading.id = `heading-${headingText || index}`;
+      }
+    });
+  });
 </script>
 
 <svelte:head>

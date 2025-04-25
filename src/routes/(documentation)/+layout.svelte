@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../../app.css';
 
 	import { page } from '$app/state';
 	import { ToastsContainer } from '$lib/components/ui';
@@ -65,6 +65,15 @@
 							Form Example
 						</a>
 						<a
+							href="/docs"
+							class="font-medium transition-all duration-300 hover:text-primary {page.url
+								.pathname === '/docs'
+								? 'text-foreground'
+								: 'text-foreground/60'}"
+						>
+							Documentation
+						</a>
+						<a
 							href="https://github.com/ibrahimraimi/ui"
 							target="_blank"
 							rel="noreferrer"
@@ -81,14 +90,6 @@
 	<main class="flex-1 bg-background pt-20">
 		<slot />
 	</main>
-
-	<footer class="border-t border-border py-6 bg-background">
-		<div class="container mx-auto flex justify-center px-4 sm:px-6">
-			<p class="text-sm text-foreground/60">
-				&copy; {new Date().getFullYear()} hash/ui. All rights reserved.
-			</p>
-		</div>
-	</footer>
 
 	<ToastsContainer position="bottom-right" />
 </div>
