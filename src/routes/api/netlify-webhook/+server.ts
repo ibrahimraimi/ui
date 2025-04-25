@@ -3,21 +3,27 @@ import { DISCORD_WEBHOOK_URL } from '$env/static/private';
 
 // healthcheck
 export const GET: RequestHandler = async () => {
-	return new Response(JSON.stringify('Netlify webhook is working!'), { status: 200, headers: { 'Content-Type': 'application/json' } });
+	return new Response(JSON.stringify('Netlify webhook is working!'), { 
+		status: 200, 
+		headers: { 'Content-Type': 'application/json' } 
+	});
 };
 
 export const POST: RequestHandler = async ({ request }) => {
-	const payload = await request.json();
+	const formData = await request.formData();
 
-	if (!payload || !payload.deploy_url || !payload.name || !payload.branch) {
+	const deploy_url = formData.get('deploy_url') as string;
+	const name = formData.get('name') as string;
+	const branch = formData.get('branch') as string;
+
+	if (!deploy_url || !name || !branch) {
 		return new Response('Invalid payload', { status: 400 });
 	}
 
-	// https://discordapp.com/api/webhooks/<your_webhook_here>
-	const discordWebhook = DISCORD_WEBHOOK_URL
+	const discordWebhook = DISCORD_WEBHOOK_URL;
 
 	const message = {
-		content: `✅ **Netlify Deploy Succeeded**\n🔗 ${payload.deploy_url}\n📦 Site: ${payload.name}\n🌿 Branch: ${payload.branch}`
+		content: `✅ **Netlify Deploy Succeeded**\n🔗 ${deploy_url}\n📦 Site: ${name}\n🌿 Branch: ${branch}`
 	};
 
 	const res = await fetch(discordWebhook, {
