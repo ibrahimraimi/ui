@@ -1,0 +1,23 @@
+ ---
+title: "Introducción"
+description: "Bienvenido a nuestra documentación"
+---
+
+# Bienvenido a Nuestra Documentación
+
+Esta es la página de introducción para nuestro sitio de documentación.
+
+## Características
+
+
+
+- Construido con SvelteKit
+- Totalmente compatible con i18n
+- Utiliza MDsveX para renderizar Markdown
+- Diseño elegante con TailwindCSS
+
+## Primeros Pasos
+
+Para navegar por la documentación, utilice la barra lateral a la izquierda. Seleccione un tema para aprender más sobre nuestro producto y cómo utilizarlo de manera efectiva.
+
+No dude en [contactarnos](mailto:support@example.com) si tiene alguna pregunta que no esté respondida en la documentación.

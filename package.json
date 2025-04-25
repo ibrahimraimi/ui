@@ -47,6 +47,7 @@
 		"globals": "^16.0.0",
 		"jsdom": "^26.0.0",
 		"lucide-svelte": "^0.488.0",
+		"mdsvex": "^0.12.5",
 		"playwright": "^1.51.1",
 		"postcss": "^8.5.3",
 		"prettier": "^3.4.2",
