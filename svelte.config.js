@@ -1,16 +1,41 @@
 import adapter from '@sveltejs/adapter-netlify';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { mdsvex } from 'mdsvex';
+import { mdsvex, escapeSvelte } from 'mdsvex';
+import { createHighlighter } from 'shiki';
+import autolinkHeadings from 'rehype-autolink-headings';
+import slugPlugin from 'rehype-slug';
+
+const theme = 'github-dark';
+const highlighter = await createHighlighter({
+	themes: [theme],
+	langs: ['javascript', 'typescript', 'bash', 'html', 'svelte']
+});
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	extensions: ['.svelte', '.svx', '.md', '.svex'],
+	
 	preprocess: [
 		vitePreprocess(), 
 		mdsvex({
-			extensions: ['.svx', '.md', '.svex']
+			extensions: ['.svx', '.md', '.svex'],
+			highlight: {
+				highlighter: async (code, lang = 'text') => {
+					const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme }));
+					return `{@html \`${html}\` }`;
+				}
+			},
+			rehypePlugins: [
+				slugPlugin,
+				[
+				autolinkHeadings,
+				{
+					behavior: 'wrap',
+				},
+			]
+			],
 		})
 	],
 

@@ -42,3 +42,58 @@ export function formatDate(date: Date | string, options?: Intl.DateTimeFormatOpt
 
 	return new Intl.DateTimeFormat('en-US', options || defaultOptions).format(dateObj);
 }
+
+export function getBrowserLocales(options = {}) {
+
+	const defaultOptions = {
+  
+	  languageCodeOnly: false,
+  
+	};
+  
+	const opt = {
+  
+	  ...defaultOptions,
+  
+	  ...options,
+  
+	};
+  
+	const browserLocales =
+  
+	  navigator.languages === undefined
+  
+		? [navigator.language]
+  
+		: navigator.languages;
+  
+	if (!browserLocales) {
+  
+	  return undefined;
+  
+	}
+  
+	return browserLocales.map(locale => {
+  
+	  const trimmedLocale = locale.trim();
+  
+	  return opt.languageCodeOnly
+  
+		? trimmedLocale.split(/-|_/)[0]
+  
+		: trimmedLocale;
+  
+	});
+  
+  }
+
+  export const supportedLocales = [
+    {
+      code: 'en',
+      name: 'English'
+    },
+	{
+		code: 'es',
+		name: 'Spanish'
+	},
+  ]
