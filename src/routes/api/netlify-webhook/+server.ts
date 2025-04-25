@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { DISCORD_WEBHOOK_URL } from '$env/static/private';
 
-// Healthcheck
+// Health check for the webhook
 export const GET: RequestHandler = async () => {
 	return new Response(JSON.stringify('Netlify webhook is working!'), {
 		status: 200,
