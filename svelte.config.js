@@ -4,6 +4,10 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 import { createHighlighter } from 'shiki';
 import autolinkHeadings from 'rehype-autolink-headings';
 import slugPlugin from 'rehype-slug';
+import remarkToc from 'remark-toc';
+import rehypeExternalLinks from 'rehype-external-links';
+import containers from "remark-containers";
+import rehypeToc from '@jsdevtools/rehype-toc';
 
 const theme = 'github-dark';
 const highlighter = await createHighlighter({
@@ -27,14 +31,34 @@ const config = {
 					return `{@html \`${html}\` }`;
 				}
 			},
+			remarkPlugins: [
+				remarkToc,
+				containers
+			],
 			rehypePlugins: [
 				slugPlugin,
 				[
-				autolinkHeadings,
-				{
-					behavior: 'wrap',
-				},
-			]
+					autolinkHeadings,
+					{
+						behavior: 'wrap',
+					},
+				],
+				[
+					rehypeExternalLinks, 
+					{ 
+						target: '_blank',
+						rel: ['nofollow', 'noopener', 'noreferrer']
+					}
+				],
+				[
+					rehypeToc,
+					{
+						nav: true,
+						headings: ['h2', 'h3'],
+						position: 'afterbegin',
+						className: 'toc'
+					}
+				]
 			],
 		})
 	],

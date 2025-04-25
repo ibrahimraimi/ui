@@ -82,7 +82,7 @@
 		<slot />
 	</main>
 
-	<footer class="border-t border-border py-6">
+	<footer class="border-t border-border py-6 bg-background">
 		<div class="container mx-auto flex justify-center px-4 sm:px-6">
 			<p class="text-sm text-foreground/60">
 				&copy; {new Date().getFullYear()} hash/ui. All rights reserved.

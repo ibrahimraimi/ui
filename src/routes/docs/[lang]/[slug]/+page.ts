@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import TableOfContents from '$lib/components/TableOfContents.svelte';
 
 export const load = (async ({ params }) => {
   const { lang, slug } = params;
@@ -11,6 +12,7 @@ export const load = (async ({ params }) => {
     return {
       content: post.default,
       meta: post.metadata,
+      toc: TableOfContents,
       lang,
       slug
     };
