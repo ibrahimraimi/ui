@@ -1,0 +1,28 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Component Usage
+
+Components are located in `src/lib/components/`. Key points:
+
+- Components use Svelte 5 syntax
+- Components are exported through [src/lib/components/index.js](mdc:src/lib/components/index.js)
+- Custom components for documentation are available globally in MDSvex files through the layout system
+
+## PackageManagerSelector
+
+The [PackageManagerSelector](mdc:src/lib/components/PackageManagerSelector.svelte) component:
+- Provides tabbed interface for different package managers
+- Used in documentation to show installation commands
+- Props: `npm`, `pnpm`, `yarn`, `bun` for respective commands
+- Example usage in markdown:
+```svelte
+<PackageManagerSelector 
+  npm="npm install pkg"
+  pnpm="pnpm add pkg"
+  yarn="yarn add pkg"
+  bun="bun add pkg"
+/>
+```

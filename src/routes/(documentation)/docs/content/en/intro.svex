@@ -3,6 +3,10 @@ title: "Introduction to Hash UI"
 description: "Hash UI introduction docs"
 ---
 
+<script>
+  import PackageManagerSelector from '$lib/components/PackageManagerSelector.svelte';
+</script>
+
 # hash/ui
 
 _A collection of reusable, accessible and beautiful UI components for your SvelteKit projects._
@@ -29,9 +33,12 @@ Easily customize components to match your brand and design requirements.
 
 ### installation
 
-``` bash
-    npm install hash/ui
-```
+<PackageManagerSelector 
+  npm="npm install hash/ui" 
+  pnpm="pnpm add hash/ui"
+  yarn="yarn add hash/ui"
+  bun="bun add hash/ui"
+/>
 
 ## Contributors
 

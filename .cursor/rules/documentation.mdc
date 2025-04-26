@@ -1,0 +1,22 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Documentation Structure
+
+The documentation uses MDSvex for markdown processing with custom components. Key files:
+
+- [svelte.config.js](mdc:svelte.config.js) - Contains MDSvex configuration with custom layouts and plugins
+- [src/lib/mdsvex-layout.svelte](mdc:src/lib/mdsvex-layout.svelte) - Default MDSvex layout
+- [src/routes/(documentation)/docs/mdsvex-layout.svelte](mdc:src/routes/(documentation)/docs/mdsvex-layout.svelte) - Documentation-specific layout
+- [src/routes/(documentation)/docs/content/en/intro.svex](mdc:src/routes/(documentation)/docs/content/en/intro.svex) - Example documentation page
+
+## Writing Documentation
+
+Documentation pages:
+1. Use `.svex` extension
+2. Live in `src/routes/(documentation)/docs/content/[lang]/`
+3. Support frontmatter for metadata
+4. Can use custom components directly without imports
+5. Support automatic table of contents via remark-toc

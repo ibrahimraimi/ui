@@ -1,4 +1,5 @@
 <script>
+	import PackageManagerSelector from '$lib/components/PackageManagerSelector.svelte';
   import { onMount } from 'svelte';
   export let data;
   
@@ -19,6 +20,9 @@
       }
     });
   });
+  const components = {
+    PackageManagerSelector
+  };
 </script>
 
 <svelte:head>
@@ -29,7 +33,7 @@
 
 <div class="markdown-content prose dark:prose-invert max-w-none flex items-start gap-8 ">
   <div class="w-full">
-      <svelte:component this={data.content} />
+      <svelte:component this={data.content} {components} />
   </div>
   <div class="w-1/4 toc-sidebar">
       <svelte:component this={data.toc} />
