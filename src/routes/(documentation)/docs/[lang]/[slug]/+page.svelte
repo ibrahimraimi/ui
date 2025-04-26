@@ -76,12 +76,41 @@
     @apply sticky top-8 self-start;
   }
 
+  .markdown-content :global(h1),
+  .markdown-content :global(h2),
+  .markdown-content :global(h3),
+  .markdown-content :global(h4) {
+    position: relative;
+  }
+
+  .markdown-content :global(h1:hover::after),
+  .markdown-content :global(h2:hover::after),
+  .markdown-content :global(h3:hover::after),
+  .markdown-content :global(h4:hover::after) {
+    content: "#";
+    @apply text-gray-400;
+    position: absolute;
+    left: -1.4rem;
+    top: 0;
+    padding-right: 0.5rem;
+    font-weight: normal;
+    opacity: 0.6;
+  }
+
   .markdown-content :global(h1) {
     @apply text-3xl font-bold mb-6;
   }
 
   .markdown-content :global(h2) {
     @apply text-2xl font-semibold mt-8 mb-4;
+  }
+
+  .markdown-content :global(h3) {
+    @apply text-xl font-semibold mt-6 mb-3;
+  }
+
+  .markdown-content :global(h4) {
+    @apply text-lg font-semibold mt-4 mb-2;
   }
 
   .markdown-content :global(p) {
