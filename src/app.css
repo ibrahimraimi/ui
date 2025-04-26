@@ -27,7 +27,7 @@
 	}
 
 	.dark {
-		--background: 240 10% 3.9%;
+		--background: 0 0% 0%;
 		--foreground: 0 0% 98%;
 		--card: 240 10% 3.9%;
 		--card-foreground: 0 0% 98%;
@@ -52,6 +52,9 @@
 @layer base {
 	* {
 		@apply border-border;
+	}
+	html {
+		@apply bg-background text-foreground;
 	}
 	body {
 		@apply bg-background text-foreground dark:bg-gray-900 dark:text-white;

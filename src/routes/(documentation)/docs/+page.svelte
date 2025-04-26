@@ -12,9 +12,9 @@
     console.log("userLocale", userLocale);
     const locale = supportedLocales.find(locale => locale.code === userLocale[0]);
     if (locale) {
-      goto(`/docs/${locale.code}/intro`);
+      goto(`/docs/${locale.code}/introduction`);
     } else {
-      goto(`/docs/en/intro`);
+      goto(`/docs/en/introduction`);
     }
     
   });

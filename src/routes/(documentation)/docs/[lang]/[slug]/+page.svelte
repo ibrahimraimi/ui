@@ -1,10 +1,28 @@
 <script>
 	import PackageManagerSelector from '$lib/components/PackageManagerSelector.svelte';
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
+  import { page } from '$app/stores';
+  import { invalidate } from '$app/navigation';
+  
   export let data;
   
+  // Keep track of previous slug/lang to detect changes
+  let prevSlug = $page.params.slug;
+  let prevLang = $page.params.lang;
+  
+  // Watch for route changes and invalidate data
+  $: if ($page.params.slug !== prevSlug || $page.params.lang !== prevLang) {
+    prevSlug = $page.params.slug;
+    prevLang = $page.params.lang;
+    invalidate(`docs:${$page.params.lang}:${$page.params.slug}`);
+  }
+  
   // Ensure all headings have IDs for the TOC
-  onMount(() => {
+  afterUpdate(() => {
+    setupHeadingIds();
+  });
+  
+  function setupHeadingIds() {
     // Select all headings without IDs
     const headings = document.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4');
     
@@ -19,7 +37,8 @@
         heading.id = `heading-${headingText || index}`;
       }
     });
-  });
+  }
+  
   const components = {
     PackageManagerSelector
   };
@@ -33,10 +52,15 @@
 
 <div class="markdown-content prose dark:prose-invert max-w-none flex items-start gap-8 ">
   <div class="w-full">
-      <svelte:component this={data.content} {components} />
+      <!-- Use a key to force component re-creation on slug/lang change -->
+      {#key `${data.lang}-${data.slug}`}
+        <svelte:component this={data.content} {components} />
+      {/key}
   </div>
   <div class="w-1/4 toc-sidebar">
-      <svelte:component this={data.toc} />
+      {#key `${data.lang}-${data.slug}`}
+        <svelte:component this={data.toc} />
+      {/key}
   </div>
 </div>
 

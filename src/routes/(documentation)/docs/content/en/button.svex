@@ -1,0 +1,67 @@
+---
+title: "Button"
+description: "A UI component for user interaction"
+---
+
+# Button Component
+
+The Button component provides an interactive element that can be clicked to trigger an action.
+
+## Features
+
+- Multiple variants: default, destructive, outline, secondary, ghost, and link
+- Various sizes: default, small, large, and icon
+- Support for loading state with animation
+- Full support for disabled state
+- Built with accessibility in mind
+
+## Usage
+
+```svelte
+<script>
+  import { Button } from "$lib/components/ui/button";
+</script>
+
+<Button>Click me</Button>
+```
+
+## Variants
+
+The Button component supports several visual variants:
+
+```svelte
+<Button variant="default">Default</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
+```
+
+## Sizes
+
+Customize the button size:
+
+```svelte
+<Button size="default">Default Size</Button>
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+<Button size="icon">🔍</Button>
+```
+
+## States
+
+Buttons can display loading and disabled states:
+
+```svelte
+<Button loading>Loading</Button>
+<Button disabled>Disabled</Button>
+```
+
+## Custom Classes
+
+You can add custom classes to extend styling:
+
+```svelte
+<Button class="my-custom-class">Custom Styled</Button>
+```

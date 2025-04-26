@@ -11,9 +11,6 @@ description: "Hash UI introduction docs"
 
 _A collection of reusable, accessible and beautiful UI components for your SvelteKit projects._
 
-[**View Components →**](/components)  
-[**Try Form Example**](/form-example)
-
 ---
 
 ## Features
@@ -29,9 +26,9 @@ Built with accessibility in mind, ensuring everyone can use your application.
 ### 🎨 Customizable  
 Easily customize components to match your brand and design requirements.
 
-## Getting Started
+---
 
-### installation
+## installation
 
 <PackageManagerSelector 
   npm="npm install hash/ui" 
@@ -39,11 +36,3 @@ Easily customize components to match your brand and design requirements.
   yarn="yarn add hash/ui"
   bun="bun add hash/ui"
 />
-
-## Contributors
-
-::: aside toc
-# Header One
-
-With container contents. 
-:::

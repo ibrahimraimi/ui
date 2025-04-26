@@ -1,7 +1,6 @@
 <script>
     import { page } from '$app/stores';
     import { sidebarItems } from './sidebar-items';
-
 </script>
 
 <aside class="left-0 top-0 w-64">
@@ -16,10 +15,11 @@
                     {#each parent.children as child}
                         <li>
                             <a 
-                                href={child.href} 
-                            class="block py-2 px-2 rounded-lg transition-colors duration-200 font-light text-sm"
-                            class:bg-gray-100={$page.url.pathname === child.href}
-                            class:dark:bg-background={$page.url.pathname === child.href}
+                                href={child.href}
+                                data-sveltekit-preload-data="hover"
+                                class="block py-2 px-2 rounded-lg transition-colors duration-200 font-light text-sm"
+                                class:bg-gray-100={$page.url.pathname === child.href}
+                                class:dark:bg-background={$page.url.pathname === child.href}
                             >
                                 {child.label}
                             </a>

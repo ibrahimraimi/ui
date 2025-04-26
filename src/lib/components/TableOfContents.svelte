@@ -95,7 +95,6 @@
   }
   
   .toc-container :global(.toc a) {
-    color: #718096;
     text-decoration: none;
     transition: color 0.2s, background-color 0.2s;
     font-size: 0.875rem;
@@ -107,12 +106,11 @@
   }
   
   .toc-container :global(.toc a:hover) {
-    color: #2d3748;
+    font-weight: 700;
   }
   
   .toc-container :global(.toc a.active) {
-   font-weight: 600;
-   color: #2d3748;
+    font-weight: 600;
   }
   
   .toc-container :global(ol) {
