@@ -1,8 +1,10 @@
 <script lang="ts">
+	import AppHeader from '$lib/components/AppHeader.svelte';
 	import '../../app.css';
 
 	import { page } from '$app/state';
 	import { ToastsContainer } from '$lib/components/ui';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 </script>
 
 <svelte:head>
@@ -32,58 +34,7 @@
 <div class="flex min-h-screen flex-col">
 	<div class="container relative z-20 mx-auto px-4 sm:px-6">
 		<div class="fixed left-1/2 top-6 z-50 w-full max-w-3xl -translate-x-1/2">
-			<header
-				class="shadow-glass rounded-full border-2 border-gray-200 bg-card/30 px-4 backdrop-blur-md sm:px-6"
-			>
-				<div class="flex h-12 items-center">
-					<nav class="flex flex-1 items-center justify-center gap-4 text-sm sm:gap-6">
-						<a
-							href="/"
-							class="font-medium transition-all duration-300 hover:text-primary {page.url
-								.pathname === '/'
-								? 'text-foreground'
-								: 'text-foreground/60'}"
-						>
-							Home
-						</a>
-						<a
-							href="/components"
-							class="font-medium transition-all duration-300 hover:text-primary {page.url
-								.pathname === '/components'
-								? 'text-foreground'
-								: 'text-foreground/60'}"
-						>
-							Components
-						</a>
-						<a
-							href="/form-example"
-							class="font-medium transition-all duration-300 hover:text-primary {page.url
-								.pathname === '/form-example'
-								? 'text-foreground'
-								: 'text-foreground/60'}"
-						>
-							Form Example
-						</a>
-						<a
-							href="/docs"
-							class="font-medium transition-all duration-300 hover:text-primary {page.url
-								.pathname === '/docs'
-								? 'text-foreground'
-								: 'text-foreground/60'}"
-						>
-							Documentation
-						</a>
-						<a
-							href="https://github.com/ibrahimraimi/ui"
-							target="_blank"
-							rel="noreferrer"
-							class="font-medium text-foreground/60 transition-all duration-300 hover:text-primary"
-						>
-							GitHub
-						</a>
-					</nav>
-				</div>
-			</header>
+			<AppHeader />
 		</div>
 	</div>
 
