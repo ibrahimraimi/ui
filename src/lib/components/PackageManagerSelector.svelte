@@ -74,9 +74,11 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
+  @reference "../../app.css";
   .rounded-container {
-    @apply bg-[#0d1117] rounded-md;
+    background-color: var(--background);
+    border-radius: var(--radius);
   }
   
   .package-manager-selector :global(pre) {

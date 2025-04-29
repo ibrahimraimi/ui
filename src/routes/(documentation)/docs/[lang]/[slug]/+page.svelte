@@ -64,7 +64,9 @@
   </div>
 </div>
 
-<style lang="postcss">
+<style>
+
+  @reference "../../../../../app.css"
   html {
     scroll-behavior: smooth;
   }

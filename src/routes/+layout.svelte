@@ -37,7 +37,6 @@
 		<slot />
 	</main>
 
-	<SiteFooter />
 
 	<ToastsContainer position="bottom-right" />
 </div>
