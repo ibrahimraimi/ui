@@ -75,12 +75,6 @@
 </div>
 
 <style lang="postcss">
-  @reference "../../app.css";
-  .rounded-container {
-    background-color: var(--background);
-    border-radius: var(--radius);
-  }
-  
   .package-manager-selector :global(pre) {
     padding-bottom: 0!important;
   }

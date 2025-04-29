@@ -29,12 +29,13 @@
     headings.forEach((heading, index) => {
       if (!heading.id) {
         // Generate an ID based on the heading text
-        const headingText = heading.textContent.trim().toLowerCase()
+        const headingText = heading.textContent?.trim().toLowerCase() ?? '';
+        const headingId = headingText
           .replace(/[^\w\s-]/g, '') // Remove special characters
           .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
           .replace(/^-+|-+$/g, ''); // Remove leading and trailing hyphens
           
-        heading.id = `heading-${headingText || index}`;
+        heading.id = `heading-${headingId || index}`;
       }
     });
   }
@@ -65,17 +66,17 @@
 </div>
 
 <style>
-
-  @reference "../../../../../app.css"
-  html {
-    scroll-behavior: smooth;
-  }
+  /* Use native CSS instead of importing Tailwind directly in component style */
+ 
+  
   .markdown-content {
-    @apply p-6;
+    padding: calc(var(--spacing) * 6);
   }
   
   .toc-sidebar {
-    @apply sticky top-8 self-start;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
   }
 
   .markdown-content :global(h1),
@@ -90,7 +91,7 @@
   .markdown-content :global(h3:hover::after),
   .markdown-content :global(h4:hover::after) {
     content: "#";
-    @apply text-gray-400;
+    color: var(--color-muted-foreground);
     position: absolute;
     left: -1.4rem;
     top: 0;
@@ -100,35 +101,62 @@
   }
 
   .markdown-content :global(h1) {
-    @apply text-3xl font-bold mb-6;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
   }
 
   .markdown-content :global(h2) {
-    @apply text-2xl font-semibold mt-8 mb-4;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 
   .markdown-content :global(h3) {
-    @apply text-xl font-semibold mt-6 mb-3;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .markdown-content :global(h4) {
-    @apply text-lg font-semibold mt-4 mb-2;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .markdown-content :global(p) {
-    @apply mb-4;
+    margin-bottom: 1rem;
   }
 
   .markdown-content :global(ul) {
-    @apply list-disc pl-6 mb-4;
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .markdown-content :global(pre) {
-    @apply p-4 bg-gray-100 dark:bg-gray-800 rounded mb-4 overflow-x-auto;
+    padding: 1rem;
+    background-color: rgb(243 244 246);
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
   }
 
   .markdown-content :global(code) {
-    @apply font-mono text-sm;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
-  
+
+  /* Dark mode overrides */
+  :global(.dark) .markdown-content :global(pre) {
+    background-color: rgb(31 41 55);
+  }
 </style>

@@ -1,10 +1,9 @@
 <script lang="ts">
-	import SiteHeader from '$lib/components/SiteHeader.svelte';
 	import '../../app.css';
-
-	import { page } from '$app/state';
 	import { ToastsContainer } from '$lib/components/ui';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	let {
+		children
+	} = $props();
 </script>
 
 <svelte:head>
@@ -39,7 +38,7 @@
 	</div> -->
 
 	<main class="flex-1 bg-background">
-		<slot />
+		{@render children()}
 	</main>
 
 	<ToastsContainer position="bottom-right" />

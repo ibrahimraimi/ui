@@ -10,7 +10,8 @@
 		open = $bindable(false), 
 		closeOnEscape = true,
 		closeOnOutsideClick = true,
-		className = ''
+		className = '',
+		children
 	} = $props();
 
 	function handleClose() {
@@ -52,6 +53,7 @@
 	<div
 		class="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs"
 		onclick={handleOutsideClick}
+		aria-hidden="true"
 		transition:fade={{ duration: 200 }}
 	>
 		<div
@@ -63,7 +65,8 @@
 			aria-modal="true"
 			transition:scale={{ duration: 300, start: 0.95, opacity: 0, easing: cubicOut }}
 		>
-			<slot {handleClose} />
+		
+			{@render children(handleClose)}
 		</div>
 	</div>
 {/if} 

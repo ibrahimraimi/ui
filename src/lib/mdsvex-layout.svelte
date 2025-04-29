@@ -2,6 +2,9 @@
     // Access metadata from markdown frontmatter
     export let title = '';
     export let description = '';
+    let {
+        children
+    } = $props();
   </script>
   
   <article class="prose dark:prose-invert max-w-none">
@@ -15,7 +18,7 @@
     {/if}
     
     <!-- Markdown content will be slotted here -->
-    <slot />
+    {@render children()}
   </article>
   
   <style lang="postcss">

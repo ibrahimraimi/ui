@@ -160,7 +160,7 @@
 			{#snippet footerContent()}
 				<p class="text-sm text-muted-foreground">
 					Already have an account?
-					<a href="#" class="text-primary underline-offset-4 hover:underline">Sign in</a>
+					<a href="/form-example" class="text-primary underline-offset-4 hover:underline">Sign in</a>
 				</p>
 			{/snippet}
 		</CompositeForm>
