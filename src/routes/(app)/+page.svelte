@@ -30,7 +30,7 @@
 			</p>
 		</div>
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-			<div class="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm">
+			<div class="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-xs">
 				<div class="flex flex-col gap-2">
 					<h3 class="text-lg font-semibold">Responsive Design</h3>
 					<p class="text-muted-foreground">
@@ -38,7 +38,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm">
+			<div class="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-xs">
 				<div class="flex flex-col gap-2">
 					<h3 class="text-lg font-semibold">Accessibility</h3>
 					<p class="text-muted-foreground">
@@ -46,7 +46,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm">
+			<div class="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-xs">
 				<div class="flex flex-col gap-2">
 					<h3 class="text-lg font-semibold">Customizable</h3>
 					<p class="text-muted-foreground">

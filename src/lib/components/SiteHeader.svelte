@@ -66,7 +66,7 @@
 				<input
 					type="search"
 					bind:value={searchQuery}
-					class="bg-muted text-muted-foreground w-full pl-10 pr-4 py-1.5 rounded-md text-sm focus:outline-none"
+					class="bg-muted text-muted-foreground w-full pl-10 pr-4 py-1.5 rounded-md text-sm focus:outline-hidden"
 					placeholder="Search documentation..."
 				/>
 				<kbd
@@ -173,7 +173,7 @@
 							type="search"
 							value={searchQuery}
 							on:input={(e) => (searchQuery = e.currentTarget.value)}
-							class="bg-muted text-muted-foreground w-full pl-10 pr-4 py-2 rounded-md text-sm focus:outline-none"
+							class="bg-muted text-muted-foreground w-full pl-10 pr-4 py-2 rounded-md text-sm focus:outline-hidden"
 							placeholder="Search documentation..."
 						/>
 					</div>

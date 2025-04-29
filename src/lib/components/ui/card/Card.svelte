@@ -15,7 +15,7 @@
 
 <div
 	class={cn(
-		'rounded-lg border bg-card px-6 pb-6 pt-2 text-card-foreground shadow-sm',
+		'rounded-lg border bg-card px-6 pb-6 pt-2 text-card-foreground shadow-xs',
 		importedClass
 	)}
 	{...restProps}

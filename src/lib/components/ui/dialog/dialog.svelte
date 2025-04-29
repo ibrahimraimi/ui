@@ -50,7 +50,7 @@
 
 {#if open}
 	<div
-		class="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+		class="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs"
 		onclick={handleOutsideClick}
 		transition:fade={{ duration: 200 }}
 	>
