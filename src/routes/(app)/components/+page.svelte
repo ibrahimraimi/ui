@@ -25,7 +25,7 @@
 			<div class="space-y-4">
 				<h2 class="text-xl font-semibold">Buttons</h2>
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-					<Button onpress={() => console.log('testing default')}>Default</Button>
+					<Button onclick={() => console.log('testing default')}>Default</Button>
 					<Button variant="destructive">Destructive</Button>
 					<Button variant="outline">Outline</Button>
 					<Button variant="secondary">Secondary</Button>
