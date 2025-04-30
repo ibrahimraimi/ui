@@ -7,6 +7,7 @@
 	variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 	size?: 'default' | 'sm' | 'lg' | 'icon';
 	className?: string;
+	class?: string;
 	loading?: boolean;
 	disabled?: boolean;
 	children?: Snippet;
@@ -18,11 +19,14 @@
 	variant = 'default',
 	size = 'default',
 	className = '',
+	class: userClass = '',
 	loading = false,
 	disabled = false,
 	children,
 	...restProps
  }: Props = $props();
+
+ const combinedClass = userClass || className;
 
 	const variantClassMap = {
 		default: 'bg-primary text-primary-foreground hover:opacity-90',
@@ -51,7 +55,7 @@
 		'disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed',
 		variantClassMap[variant],
 		sizeClassMap[size],
-		className
+		combinedClass
 	)}
 >
 	{#if loading}
