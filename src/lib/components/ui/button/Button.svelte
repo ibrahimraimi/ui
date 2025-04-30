@@ -10,6 +10,7 @@
 	loading?: boolean;
 	disabled?: boolean;
 	children?: Snippet;
+	[key: string]: any;
  }
 
  let {
@@ -19,7 +20,8 @@
 	className = '',
 	loading = false,
 	disabled = false,
-	children
+	children,
+	...restProps
  }: Props = $props();
 
 	const variantClassMap = {
@@ -42,6 +44,7 @@
 <button
 	{type}
 	{disabled}
+	{...restProps}	
 	class={cn(
 		'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200',
 		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
