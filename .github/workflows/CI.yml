@@ -1,0 +1,108 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main, prod]
+  pull_request:
+    branches: [main, prod]
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      deployment_url: ${{ steps.get-url.outputs.url }}
+      deployment_status: ${{ job.status }}
+
+    permissions:
+      deployments: write
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      # Setup steps
+      - name: Create GitHub deployment
+        id: deployment
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/prod') && 'production' || 'preview' }}
+
+      - uses: actions/checkout@v4
+
+      - name: Setup PNPM and Node
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10.x'
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      # Build and test steps
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run tests
+        run: pnpm test
+
+      # Deployment steps
+      - name: Deploy PR Preview
+        id: preview-deploy
+        if: github.event_name == 'pull_request'
+        uses: jsmrcaga/action-netlify-deploy@v2.4.0
+        with:
+          deploy_alias: pr-${{ github.event.number }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          build_directory: 'build'
+          install_command: pnpm install
+          build_command: pnpm run build
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Deploy Production
+        id: production-deploy
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/prod')
+        uses: jsmrcaga/action-netlify-deploy@v2.4.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: 'build'
+          install_command: pnpm install
+          build_command: pnpm run build
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      # Update deployment status
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'success'
+          environment-url: ${{ github.event_name == 'push' && 'https://hael-hash-ui.netlify.app' || format('https://pr-{0}--hael-hash-ui.netlify.app', github.event.number) }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'failure'
+
+  # Optional: Notify about deployment
+  notify:
+    needs: test-and-deploy
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Send notification
+        run: |
+          echo "Deployment URL: ${{ needs.test-and-deploy.outputs.deployment_url }}"
+          echo "Deployment Status: ${{ needs.test-and-deploy.outputs.deployment_status }}"

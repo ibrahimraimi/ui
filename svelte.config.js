@@ -6,7 +6,7 @@ import autolinkHeadings from 'rehype-autolink-headings';
 import slugPlugin from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import rehypeExternalLinks from 'rehype-external-links';
-import containers from "remark-containers";
+import containers from 'remark-containers';
 import rehypeToc from '@jsdevtools/rehype-toc';
 
 const theme = 'github-dark';
@@ -20,9 +20,9 @@ const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	extensions: ['.svelte', '.svx', '.md', '.svex'],
-	
+
 	preprocess: [
-		vitePreprocess(), 
+		vitePreprocess(),
 		mdsvex({
 			extensions: ['.svx', '.md', '.svex'],
 			highlight: {
@@ -31,21 +31,18 @@ const config = {
 					return `{@html \`${html}\` }`;
 				}
 			},
-			remarkPlugins: [
-				remarkToc,
-				containers
-			],
+			remarkPlugins: [remarkToc, containers],
 			rehypePlugins: [
 				slugPlugin,
 				[
 					autolinkHeadings,
 					{
-						behavior: 'wrap',
-					},
+						behavior: 'wrap'
+					}
 				],
 				[
-					rehypeExternalLinks, 
-					{ 
+					rehypeExternalLinks,
+					{
 						target: '_blank',
 						rel: ['nofollow', 'noopener', 'noreferrer']
 					}
@@ -59,7 +56,7 @@ const config = {
 						className: 'toc'
 					}
 				]
-			],
+			]
 		})
 	],
 
@@ -67,7 +64,10 @@ const config = {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
-		adapter: adapter()
+		adapter: adapter({
+			split: true,
+			edge: false
+		})
 	}
 };
 
