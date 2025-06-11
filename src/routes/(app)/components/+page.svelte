@@ -71,38 +71,41 @@
 				<h2 class="text-xl font-semibold">Accordion</h2>
 				<div class="space-y-6">
 					<div>
-						<h3 class="mb-3 text-sm font-medium text-muted-foreground">Single (Collapsible)</h3>
+						<h3 class="text-muted-foreground mb-3 text-sm font-medium">Single (Collapsible)</h3>
 						<Accordion.Accordion type="single" collapsible>
 							<Accordion.AccordionItem value="accessibility">
 								<Accordion.AccordionTrigger>Is it accessible?</Accordion.AccordionTrigger>
 								<Accordion.AccordionContent>
-									Yes. It adheres to the WAI-ARIA design pattern and follows accessibility best practices including keyboard navigation and screen reader support.
+									Yes. It adheres to the WAI-ARIA design pattern and follows accessibility best
+									practices including keyboard navigation and screen reader support.
 								</Accordion.AccordionContent>
 							</Accordion.AccordionItem>
-							
+
 							<Accordion.AccordionItem value="styling">
 								<Accordion.AccordionTrigger>Is it styled?</Accordion.AccordionTrigger>
 								<Accordion.AccordionContent>
-									Yes. It comes with default styles that match your design system preferences and can be fully customized with Tailwind CSS classes.
+									Yes. It comes with default styles that match your design system preferences and
+									can be fully customized with Tailwind CSS classes.
 								</Accordion.AccordionContent>
 							</Accordion.AccordionItem>
-							
+
 							<Accordion.AccordionItem value="animation">
 								<Accordion.AccordionTrigger>Is it animated?</Accordion.AccordionTrigger>
 								<Accordion.AccordionContent>
-									Yes. It features smooth slide animations using Svelte's built-in transition system. The chevron icon rotates when opened/closed.
+									Yes. It features smooth slide animations using Svelte's built-in transition
+									system. The chevron icon rotates when opened/closed.
 								</Accordion.AccordionContent>
 							</Accordion.AccordionItem>
 						</Accordion.Accordion>
 					</div>
 
 					<div>
-						<h3 class="mb-3 text-sm font-medium text-muted-foreground">Multiple Selection</h3>
+						<h3 class="text-muted-foreground mb-3 text-sm font-medium">Multiple Selection</h3>
 						<Accordion.Accordion type="multiple">
 							<Accordion.AccordionItem value="features">
 								<Accordion.AccordionTrigger>Key Features</Accordion.AccordionTrigger>
 								<Accordion.AccordionContent>
-									<ul class="list-disc list-inside space-y-1">
+									<ul class="list-inside list-disc space-y-1">
 										<li>Fully accessible with ARIA support</li>
 										<li>Keyboard navigation (Enter/Space to toggle)</li>
 										<li>Smooth slide animations</li>
@@ -112,11 +115,16 @@
 									</ul>
 								</Accordion.AccordionContent>
 							</Accordion.AccordionItem>
-							
+
 							<Accordion.AccordionItem value="usage">
 								<Accordion.AccordionTrigger>How to use</Accordion.AccordionTrigger>
 								<Accordion.AccordionContent>
-									Import the accordion components and compose them together. Use the <code class="bg-muted px-1 py-0.5 rounded text-sm">type</code> prop to control single or multiple selection behavior. Set <code class="bg-muted px-1 py-0.5 rounded text-sm">collapsible</code> to allow closing items in single mode.
+									Import the accordion components and compose them together. Use the <code
+										class="bg-muted rounded px-1 py-0.5 text-sm">type</code
+									>
+									prop to control single or multiple selection behavior. Set
+									<code class="bg-muted rounded px-1 py-0.5 text-sm">collapsible</code> to allow closing
+									items in single mode.
 								</Accordion.AccordionContent>
 							</Accordion.AccordionItem>
 
@@ -124,11 +132,27 @@
 								<Accordion.AccordionTrigger>Customization Options</Accordion.AccordionTrigger>
 								<Accordion.AccordionContent>
 									<p class="mb-2">The accordion can be customized in several ways:</p>
-									<ul class="list-disc list-inside space-y-1">
-										<li>Custom CSS classes via the <code class="bg-muted px-1 py-0.5 rounded text-sm">class</code> prop</li>
-										<li>Controlled state with <code class="bg-muted px-1 py-0.5 rounded text-sm">value</code> binding</li>
-										<li>Change callback with <code class="bg-muted px-1 py-0.5 rounded text-sm">onValueChange</code></li>
-										<li>Disable individual items with the <code class="bg-muted px-1 py-0.5 rounded text-sm">disabled</code> prop</li>
+									<ul class="list-inside list-disc space-y-1">
+										<li>
+											Custom CSS classes via the <code class="bg-muted rounded px-1 py-0.5 text-sm"
+												>class</code
+											> prop
+										</li>
+										<li>
+											Controlled state with <code class="bg-muted rounded px-1 py-0.5 text-sm"
+												>value</code
+											> binding
+										</li>
+										<li>
+											Change callback with <code class="bg-muted rounded px-1 py-0.5 text-sm"
+												>onValueChange</code
+											>
+										</li>
+										<li>
+											Disable individual items with the <code
+												class="bg-muted rounded px-1 py-0.5 text-sm">disabled</code
+											> prop
+										</li>
 									</ul>
 								</Accordion.AccordionContent>
 							</Accordion.AccordionItem>
